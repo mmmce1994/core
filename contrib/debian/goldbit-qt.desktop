@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Utabit
+Comment=Utabit P2P Cryptocurrency
+Comment[fr]=Utabit, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Utabit, eşten eşe kriptografik sanal para birimi
+Exec=utabit-qt %u
+Terminal=false
+Type=Application
+Icon=utabit128
+MimeType=x-scheme-handler/utabit;
+Categories=Office;Finance;

@@ -1,0 +1,3 @@
+debian/manpages/goldbitd.1
+debian/manpages/goldbit.conf.5
+debian/manpages/goldbit-cli.1

@@ -1,0 +1,45 @@
+bin_PROGRAMS += bench/bench_goldbit
+BENCH_SRCDIR = bench
+BENCH_BINARY = bench/bench_goldbit$(EXEEXT)
+
+
+bench_bench_goldbit_SOURCES = \
+  bench/bench_goldbit.cpp \
+  bench/bench.cpp \
+  bench/bench.h \
+  bench/Examples.cpp
+
+bench_bench_goldbit_CPPFLAGS = $(AM_CPPFLAGS) $(GOLDBIT_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
+bench_bench_goldbit_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bench_bench_goldbit_LDADD = \
+  $(LIBGOLDBIT_SERVER) \
+  $(LIBGOLDBIT_COMMON) \
+  $(LIBGOLDBIT_UNIVALUE) \
+  $(LIBGOLDBIT_UTIL) \
+  $(LIBGOLDBIT_CRYPTO) \
+  $(LIBLEVELDB) \
+  $(LIBMEMENV) \
+  $(LIBSECP256K1)
+
+if ENABLE_ZMQ
+bench_bench_goldbit_LDADD += $(LIBGOLDBIT_ZMQ) $(ZMQ_LIBS)
+endif
+
+if ENABLE_WALLET
+bench_bench_goldbit_LDADD += $(LIBGOLDBIT_WALLET)
+endif
+
+bench_bench_goldbit_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+bench_bench_goldbit_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+
+CLEAN_GOLDBIT_BENCH = bench/*.gcda bench/*.gcno
+
+CLEANFILES += $(CLEAN_GOLDBIT_BENCH)
+
+goldbit_bench: $(BENCH_BINARY)
+
+bench: $(BENCH_BINARY) FORCE
+	$(BENCH_BINARY)
+
+goldbit_bench_clean : FORCE
+	rm -f $(CLEAN_GOLDBIT_BENCH) $(bench_bench_goldbit_OBJECTS) $(BENCH_BINARY)

@@ -1,0 +1,22 @@
+[Unit]
+Description=Goldbit's distributed currency daemon
+After=network.target
+
+[Service]
+User=goldbit
+Group=goldbit
+
+Type=forking
+PIDFile=/var/lib/goldbitd/goldbitd.pid
+ExecStart=/usr/bin/goldbitd -daemon -pid=/var/lib/goldbitd/goldbitd.pid \
+-conf=/etc/goldbit/goldbit.conf -datadir=/var/lib/goldbitd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

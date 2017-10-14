@@ -1,0 +1,6 @@
+usr/local/bin/goldbit-qt usr/bin
+share/pixmaps/goldbit32.xpm usr/share/pixmaps
+share/pixmaps/goldbit16.xpm usr/share/pixmaps
+share/pixmaps/goldbit128.png usr/share/pixmaps
+debian/goldbit-qt.desktop usr/share/applications
+debian/goldbit-qt.protocol usr/share/kde4/services/

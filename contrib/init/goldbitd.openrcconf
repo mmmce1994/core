@@ -1,0 +1,33 @@
+# /etc/conf.d/goldbitd: config file for /etc/init.d/goldbitd
+
+# Config file location
+#GOLDBITD_CONFIGFILE="/etc/goldbit/goldbit.conf"
+
+# What directory to write pidfile to?  (created and owned by $GOLDBITD_USER)
+#GOLDBITD_PIDDIR="/var/run/goldbitd"
+
+# What filename to give the pidfile
+#GOLDBITD_PIDFILE="${GOLDBITD_PIDDIR}/goldbitd.pid"
+
+# Where to write goldbitd data (be mindful that the blockchain is large)
+#GOLDBITD_DATADIR="/var/lib/goldbitd"
+
+# User and group to own goldbitd process
+#GOLDBITD_USER="goldbit"
+#GOLDBITD_GROUP="goldbit"
+
+# Path to goldbitd executable
+#GOLDBITD_BIN="/usr/bin/goldbitd"
+
+# Nice value to run goldbitd under
+#GOLDBITD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+GOLDBITD_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for goldbitd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+GOLDBITD_SIGTERM_TIMEOUT=60
